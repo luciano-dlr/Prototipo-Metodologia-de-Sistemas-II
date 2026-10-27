@@ -1,0 +1,20 @@
+✔ base: alta normaliza y asigna id (1.878148ms)
+✔ base: rechaza estudiante desconocido (0.454485ms)
+✔ base: rechaza campos vacíos sin consumir id (0.228629ms)
+✔ base: rechaza prioridad inválida (0.141601ms)
+✔ base: asigna responsable (0.205796ms)
+✔ base: responsable inválido conserva estado (0.195751ms)
+✔ base: cambia estado (0.214258ms)
+✔ base: estado inválido no modifica datos (0.172095ms)
+✔ base: operaciones sobre id inexistente (1.211858ms)
+✔ base: filtro y reporte (0.337931ms)
+✔ base: reporte vacío (0.13474ms)
+✔ base: respuestas aisladas (0.198285ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 250.728874
