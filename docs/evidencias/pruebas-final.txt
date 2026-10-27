@@ -1,0 +1,34 @@
+✔ base: alta normaliza y asigna id (2.925269ms)
+✔ base: rechaza estudiante desconocido (0.442737ms)
+✔ base: rechaza campos vacíos sin consumir id (0.338853ms)
+✔ base: rechaza prioridad inválida (0.171184ms)
+✔ base: asigna responsable (0.313915ms)
+✔ base: responsable inválido conserva estado (0.221278ms)
+✔ base: cambia estado (0.16867ms)
+✔ base: estado inválido no modifica datos (0.229751ms)
+✔ base: operaciones sobre id inexistente (0.274908ms)
+✔ base: filtro y reporte (0.474694ms)
+✔ base: reporte vacío (0.166157ms)
+✔ base: respuestas aisladas (0.113388ms)
+✔ refactorizada: alta normaliza y asigna id (0.338232ms)
+✔ refactorizada: rechaza estudiante desconocido (0.097365ms)
+✔ refactorizada: rechaza campos vacíos sin consumir id (0.190242ms)
+✔ refactorizada: rechaza prioridad inválida (0.143402ms)
+✔ refactorizada: asigna responsable (0.3164ms)
+✔ refactorizada: responsable inválido conserva estado (0.167078ms)
+✔ refactorizada: cambia estado (0.20243ms)
+✔ refactorizada: estado inválido no modifica datos (0.123143ms)
+✔ refactorizada: operaciones sobre id inexistente (0.172045ms)
+✔ refactorizada: filtro y reporte (0.205866ms)
+✔ refactorizada: reporte vacío (0.067831ms)
+✔ refactorizada: respuestas aisladas (0.058136ms)
+✔ repositorio: aísla entrada y salida (0.952914ms)
+✔ repositorio: ids y ausencia (0.183361ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 164.395661

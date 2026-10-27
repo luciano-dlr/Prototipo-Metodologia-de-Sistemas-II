@@ -2,8 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { SistemaBase } from '../src/base.ts';
 import type { Estado, Prioridad } from '../src/model.ts';
-const fabricas: Record<string, () => SistemaBase> = {base: () => new SistemaBase()};
-// FACTORIES
+const fabricas: Record<string, () => Pick<SistemaBase, 'registrar'|'cambiarEstado'|'asignar'|'buscar'|'reporte'>> = {base: () => new SistemaBase()};
+import { crearServicio } from '../src/factory.ts';
+fabricas.refactorizada = () => {
+  const servicio = crearServicio();
+  return {
+    registrar: (estudianteId, tipo, detalle, prioridad) => servicio.registrar({estudianteId, tipo, detalle, prioridad}),
+    cambiarEstado: (id, estado) => servicio.cambiarEstado(id, estado),
+    asignar: (id, responsableId) => servicio.asignar(id, responsableId),
+    buscar: estado => servicio.buscar(estado), reporte: () => servicio.reporte()
+  };
+};
 for (const [version, crear] of Object.entries(fabricas)) {
   test(`${version}: alta normaliza y asigna id`, () => {
     const s = crear();

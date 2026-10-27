@@ -1,0 +1,39 @@
+1. Registrar {
+  id: 1,
+  estudianteId: 1,
+  tipo: 'certificado',
+  detalle: 'Alumno regular',
+  prioridad: 'normal',
+  estado: 'pendiente',
+  responsableId: null
+}
+2. Asignar {
+  id: 1,
+  estudianteId: 1,
+  tipo: 'certificado',
+  detalle: 'Alumno regular',
+  prioridad: 'normal',
+  estado: 'pendiente',
+  responsableId: 10
+}
+3. Cambiar estado {
+  id: 1,
+  estudianteId: 1,
+  tipo: 'certificado',
+  detalle: 'Alumno regular',
+  prioridad: 'normal',
+  estado: 'en_proceso',
+  responsableId: 10
+}
+4. Filtrar [
+  {
+    id: 1,
+    estudianteId: 1,
+    tipo: 'certificado',
+    detalle: 'Alumno regular',
+    prioridad: 'normal',
+    estado: 'en_proceso',
+    responsableId: 10
+  }
+]
+5. Reporte { total: 1, pendiente: 0, en_proceso: 1, resuelta: 0 }
