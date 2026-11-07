@@ -1,0 +1,41 @@
+
+> test
+> node --test tests/*.test.ts
+
+✔ base: alta normaliza y asigna id (1.254ms)
+✔ base: rechaza estudiante desconocido (0.190625ms)
+✔ base: rechaza campos vacíos sin consumir id (0.081041ms)
+✔ base: rechaza prioridad inválida (0.056458ms)
+✔ base: asigna responsable (0.076458ms)
+✔ base: responsable inválido conserva estado (0.078042ms)
+✔ base: cambia estado (0.061167ms)
+✔ base: estado inválido no modifica datos (0.052417ms)
+✔ base: operaciones sobre id inexistente (0.062208ms)
+✔ base: filtro y reporte (0.139875ms)
+✔ base: reporte vacío (0.055542ms)
+✔ base: respuestas aisladas (0.057875ms)
+✔ refactorizada: alta normaliza y asigna id (0.131417ms)
+✔ refactorizada: rechaza estudiante desconocido (0.06725ms)
+✔ refactorizada: rechaza campos vacíos sin consumir id (0.0775ms)
+✔ refactorizada: rechaza prioridad inválida (0.033084ms)
+✔ refactorizada: asigna responsable (0.059083ms)
+✔ refactorizada: responsable inválido conserva estado (0.068125ms)
+✔ refactorizada: cambia estado (0.036375ms)
+✔ refactorizada: estado inválido no modifica datos (0.035042ms)
+✔ refactorizada: operaciones sobre id inexistente (0.043458ms)
+✔ refactorizada: filtro y reporte (0.064417ms)
+✔ refactorizada: reporte vacío (0.021084ms)
+✔ refactorizada: respuestas aisladas (0.027ms)
+✔ errores: referencias inexistentes son ErrorNoEncontrado (0.807708ms)
+✔ errores: datos inválidos son ErrorDeValidacion (0.161625ms)
+✔ errores: conservan mensaje y jerarquía (0.087ms)
+✔ repositorio: aísla entrada y salida (0.442333ms)
+✔ repositorio: ids y ausencia (0.077208ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 29
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 72.236084

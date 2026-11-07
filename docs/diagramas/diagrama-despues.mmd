@@ -1,0 +1,56 @@
+---
+title: Versión refactorizada (tag estadorefactorizado) — responsabilidades separadas y dependencias por contrato
+---
+classDiagram
+    direction TB
+    class factory_ts["factory.ts"] {
+        crearServicio() ServicioSolicitudes
+    }
+    class ServicioSolicitudes {
+        -repositorio: RepositorioSolicitudes
+        -catalogos: Catalogos
+        +registrar(registro: Registro)
+        +cambiarEstado(id, estado)
+        +asignar(id, responsableId)
+        +buscar(estado?)
+        +reporte()
+        -validarRegistro(registro)
+        -obtenerObligatoria(id)
+    }
+    class RepositorioSolicitudes {
+        <<interface>>
+        siguienteId() number
+        guardar(solicitud) void
+        obtener(id) Solicitud | undefined
+        listar() Solicitud[]
+    }
+    class RepositorioMemoria {
+        #datos: Map~number, Solicitud~
+        #secuencia: number
+        siguienteId() number
+        guardar(solicitud) void
+        obtener(id) copia
+        listar() copias
+    }
+    class Catalogos {
+        <<interface>>
+        existeEstudiante(id) boolean
+        existeResponsable(id) boolean
+    }
+    class report_ts["report.ts"] {
+        ESTADOS: Estado[]
+        resumir(solicitudes) conteo
+    }
+    class model_ts["model.ts"] {
+        Registro · Solicitud
+        Estado · Prioridad
+    }
+    factory_ts ..> ServicioSolicitudes : crea
+    factory_ts ..> RepositorioMemoria : crea
+    factory_ts ..> Catalogos : crea (funciones)
+    ServicioSolicitudes --> RepositorioSolicitudes : depende
+    ServicioSolicitudes --> Catalogos : depende
+    ServicioSolicitudes ..> report_ts : usa resumir()
+    ServicioSolicitudes ..> model_ts : usa tipos
+    RepositorioMemoria ..|> RepositorioSolicitudes : implementa
+    style ServicioSolicitudes fill:#E2EFDA,stroke:#548235,stroke-width:2px

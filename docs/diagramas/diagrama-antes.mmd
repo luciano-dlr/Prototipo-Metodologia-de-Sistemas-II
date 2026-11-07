@@ -1,0 +1,26 @@
+---
+title: Versión inicial (tag estado-inicial) — una clase concentra todas las responsabilidades
+---
+classDiagram
+    direction TB
+    class Consumidor["Consumidor (demo, tests, cliente)"] {
+        accede a la API y a los campos públicos
+    }
+    class SistemaBase {
+        +datos: Solicitud[]
+        +n: number
+        +registrar(e, t, d, p)
+        +cambiarEstado(id, estado)
+        +asignar(id, responsableId)
+        +buscar(estado?)
+        +reporte()
+    }
+    class model_ts["model.ts"] {
+        estudiantes: Estudiante[]
+        responsables: Responsable[]
+        Solicitud · Estado · Prioridad
+    }
+    Consumidor ..> SistemaBase : escribe datos / n sin validar (D4)
+    SistemaBase ..> model_ts : import directo de catálogos (D6)
+    note for SistemaBase "D1 · valida, almacena, busca y reporta en una sola clase<br/>D2 · búsqueda y error repetidos en cambiarEstado y asignar<br/>D3 / D5 · registrar(e, t, d, p): posicionales, nombres de una letra<br/>D4 · datos y n públicos y mutables<br/>D7 / D8 · reporte recorre la colección con literales de estado"
+    style SistemaBase fill:#FBE9E7,stroke:#9E3A2B,stroke-width:2px
