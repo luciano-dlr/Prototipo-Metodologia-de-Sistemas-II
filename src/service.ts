@@ -1,13 +1,14 @@
+import { ESTADOS, PRIORIDADES } from './model.ts';
 import type { Estado, Registro, Solicitud } from './model.ts';
 import type { RepositorioSolicitudes } from './repository.ts';
-import { ESTADOS, resumir } from './report.ts';
+import { resumir } from './report.ts';
 export interface Catalogos {
   existeEstudiante(id: number): boolean;
   existeResponsable(id: number): boolean;
 }
 export class ServicioSolicitudes {
-  private repositorio: RepositorioSolicitudes;
-  private catalogos: Catalogos;
+  private readonly repositorio: RepositorioSolicitudes;
+  private readonly catalogos: Catalogos;
   constructor(repositorio: RepositorioSolicitudes, catalogos: Catalogos) {
     this.repositorio = repositorio;
     this.catalogos = catalogos;
@@ -23,7 +24,7 @@ export class ServicioSolicitudes {
   private validarRegistro(registro: Registro) {
     if (!this.catalogos.existeEstudiante(registro.estudianteId)) throw new Error('Estudiante inexistente');
     if (!registro.tipo.trim() || !registro.detalle.trim()) throw new Error('Campos obligatorios');
-    if (!['normal','alta'].includes(registro.prioridad)) throw new Error('Prioridad inválida');
+    if (!PRIORIDADES.includes(registro.prioridad)) throw new Error('Prioridad inválida');
   }
   private obtenerObligatoria(id: number) {
     const solicitud = this.repositorio.obtener(id);
