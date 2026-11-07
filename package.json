@@ -4,9 +4,14 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.ts",
-    "demo": "node src/demo.ts"
+    "demo": "node src/demo.ts",
+    "typecheck": "tsc -p tsconfig.json"
   },
   "engines": {
     "node": ">=24"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "~5.9.3"
   }
 }
