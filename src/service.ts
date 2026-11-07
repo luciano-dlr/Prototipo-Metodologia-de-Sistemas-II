@@ -2,6 +2,7 @@ import { ESTADOS, PRIORIDADES } from './model.ts';
 import type { Estado, Registro, Solicitud } from './model.ts';
 import type { RepositorioSolicitudes } from './repository.ts';
 import { resumir } from './report.ts';
+import { ErrorDeValidacion, ErrorNoEncontrado } from './errores.ts';
 export interface Catalogos {
   existeEstudiante(id: number): boolean;
   existeResponsable(id: number): boolean;
@@ -22,25 +23,25 @@ export class ServicioSolicitudes {
     return {...solicitud};
   }
   private validarRegistro(registro: Registro) {
-    if (!this.catalogos.existeEstudiante(registro.estudianteId)) throw new Error('Estudiante inexistente');
-    if (!registro.tipo.trim() || !registro.detalle.trim()) throw new Error('Campos obligatorios');
-    if (!PRIORIDADES.includes(registro.prioridad)) throw new Error('Prioridad inválida');
+    if (!this.catalogos.existeEstudiante(registro.estudianteId)) throw new ErrorNoEncontrado('Estudiante inexistente');
+    if (!registro.tipo.trim() || !registro.detalle.trim()) throw new ErrorDeValidacion('Campos obligatorios');
+    if (!PRIORIDADES.includes(registro.prioridad)) throw new ErrorDeValidacion('Prioridad inválida');
   }
   private obtenerObligatoria(id: number) {
     const solicitud = this.repositorio.obtener(id);
-    if (!solicitud) throw new Error('Solicitud inexistente');
+    if (!solicitud) throw new ErrorNoEncontrado('Solicitud inexistente');
     return solicitud;
   }
   cambiarEstado(id: number, estado: Estado) {
     const solicitud = this.obtenerObligatoria(id);
-    if (!ESTADOS.includes(estado)) throw new Error('Estado inválido');
+    if (!ESTADOS.includes(estado)) throw new ErrorDeValidacion('Estado inválido');
     solicitud.estado = estado;
     this.repositorio.guardar(solicitud);
     return {...solicitud};
   }
   asignar(id: number, responsableId: number) {
     const solicitud = this.obtenerObligatoria(id);
-    if (!this.catalogos.existeResponsable(responsableId)) throw new Error('Responsable inexistente');
+    if (!this.catalogos.existeResponsable(responsableId)) throw new ErrorNoEncontrado('Responsable inexistente');
     solicitud.responsableId = responsableId;
     this.repositorio.guardar(solicitud);
     return {...solicitud};
